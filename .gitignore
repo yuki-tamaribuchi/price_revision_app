@@ -1,2 +1,3 @@
 .vscode/settings.json
 shop_datas/*
+__pycache__/*
