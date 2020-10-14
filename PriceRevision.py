@@ -3,4 +3,8 @@ import pandas as pd
 import csv
 
 class PriceRevision():
-    pass
+    
+    def __init__(self):
+        pass
+
+
