@@ -1,6 +1,4 @@
 import numpy as np
-import pandas as pd
-import csv
 
 class PriceRevision():
     
@@ -8,6 +6,4 @@ class PriceRevision():
         pass
 
     def read_master_csv(self,master_csv):
-        master=np.loadtxt(master_csv,delimiter=',')
-
-        print(master)
+        master_jan=np.genfromtxt(master_csv,delimiter=',',skip_header=1,usecols=0,encoding='CP932',dtype=str)
