@@ -28,15 +28,15 @@ while True:
         window['-MAKERS-'].update(values=pr.makers)
 
     if event=='作業用エクセルファイルを作成':
-        dir=values['-WORK_DIR-']
-        pr.create_revision_excel(dir=dir)
+        dir_path=values['-WORK_DIR-']
+        pr.create_revision_excel(dir_path=dir_path)
 
     if event=='実行':
         selected_maker=values['-MAKERS-']
         pr.query_by_maker(maker=selected_maker)
-        pr.create_revision_data_frame(dir=dir)
+        pr.create_revision_data_frame(dir_path=dir_path)
         pr.execute_search()
-        pr.export_matched_data(dir=dir)
+        pr.export_matched_data(dir_path=dir_path)
         
 
 window.close()
