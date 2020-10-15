@@ -21,7 +21,7 @@ class PriceRevision():
 
 
     def read_master_csv(self,master_csv):
-        self.__master_jan=np.genfromtxt(master_csv,delimiter=',',skip_header=1,usecols=0,encoding='CP932',dtype=str)
+        self.__master_jan=np.genfromtxt(master_csv,delimiter=',',skip_header=1,usecols=0,encoding='CP932',dtype=int)
 
     def read_revision_sheet(self):
         from itertools import islice
@@ -30,6 +30,14 @@ class PriceRevision():
         ws=wb['改定表貼り付けシート']
         data=ws.values
         data=list(data)
+        data=data[1:][:]
         df=pd.DataFrame(data)
-        revision_arr=df.to_numpy()
+        self.__revision_arr=df.to_numpy()
+        print(self.__revision_arr)
+
+    def execute_search(self):
         
+        revision_jan=self.__revision_arr[:,0].astype(np.int64)
+        matched_jan=revision_jan.all(self.__master_jan)
+
+        print(matched_jan)
