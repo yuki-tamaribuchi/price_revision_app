@@ -27,7 +27,7 @@ class PriceRevision():
         self.__queried_df=self.__master_df[self.__master_df['メーカー名称']==maker]
 
     def create_revision_data_frame(self,dir):
-        self.__revision_df=pd.read_excel(dir+'revision.xlsx')
+        self.__revision_df=pd.read_excel(dir+'/revision.xlsx')
 
     def execute_search(self):
         self.__matched_df=self.__revision_df[self.__revision_df['JANコード'].isin(self.__queried_df['商品コード'])]
@@ -35,5 +35,5 @@ class PriceRevision():
 
     def export_matched_data(self,dir):
         with pd.ExcelWriter(dir+'/revision.xlsx') as writer:
-            writer.book=load_workbook(dir)
+            writer.book=load_workbook(dir+'/revision.xlsx')
             self.__matched_df.to_excel(writer,sheet_name='抽出済')
