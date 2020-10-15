@@ -7,7 +7,7 @@ class PriceRevision():
     def load_master(self,filepath):
         self.__master_df=pd.read_csv(filepath_or_buffer=filepath,encoding='CP932',low_memory=False,header=0)
 
-    def create_revision_csv(self):
+    def create_revision_excel(self):
         revision_wb=Workbook()
         revision_ws=revision_wb.active
         revision_ws.title='改定表貼付シート'
