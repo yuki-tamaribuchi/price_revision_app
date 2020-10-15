@@ -28,7 +28,10 @@ class PriceRevision():
     def query_by_maker(self,maker):
         self.__queried_df=self.__master_df[self.__master_df['メーカー名称']==maker]
 
+    def create_revision_data_frame(self,filename):
+        self.__revision_df=pd.read_excel(filename)
+
 
     def execute_search(self):
-        matched_df=self.__queried_df[self.__queried_df['商品コード'] & set(self.__master_df)]
+        matched_df=self.__revision_df[self.__revision_df['JANコード'].isin(self.__queried_df['商品コード'])]
         print(matched_df)
