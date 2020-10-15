@@ -1,3 +1,4 @@
 .vscode/settings.json
 shop_datas/*
 __pycache__/*
+*.xlsx
