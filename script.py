@@ -1,6 +1,6 @@
 from PriceRevision import PriceRevision
 
 pr=PriceRevision()
-pr.read_master_csv('shop_datas/master.csv')
-pr.read_revision_sheet()
-pr.execute_search()
+pr.load_master('shop_datas/master.csv')
+pr.create_maker_list()
+pr.query_by_maker('マルアイ')
