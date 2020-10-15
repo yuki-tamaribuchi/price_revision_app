@@ -21,7 +21,7 @@ class PriceRevision():
         revision_wb.save('%s/revision.xlsx'%dir_path)
 
     def create_maker_list(self):
-        self.makers=self.__master_df['メーカー名称'].unique()
+        self.makers=list(self.__master_df['メーカー名称'].unique())
 
     def query_by_maker(self,maker):
         self.__queried_df=self.__master_df[self.__master_df['メーカー名称']==maker]
