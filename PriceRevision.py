@@ -7,7 +7,6 @@ class PriceRevision():
     def load_master(self,filepath):
         self.__master_df=pd.read_csv(filepath_or_buffer=filepath,encoding='CP932',low_memory=False,header=0)
 
-
     def create_revision_csv(self):
         revision_wb=Workbook()
         revision_ws=revision_wb.active
@@ -21,7 +20,6 @@ class PriceRevision():
 
         revision_wb.save('revision.xlsx')
 
-
     def create_maker_list(self):
         self.__makers=self.__master_df['メーカー名称'].unique()
 
@@ -31,7 +29,11 @@ class PriceRevision():
     def create_revision_data_frame(self,filename):
         self.__revision_df=pd.read_excel(filename)
 
-
     def execute_search(self):
-        matched_df=self.__revision_df[self.__revision_df['JANコード'].isin(self.__queried_df['商品コード'])]
-        print(matched_df)
+        self.__matched_df=self.__revision_df[self.__revision_df['JANコード'].isin(self.__queried_df['商品コード'])]
+
+
+    def export_matched_data(self,filename):
+        with pd.ExcelWriter(filename) as writer:
+            writer.book=load_workbook(filename)
+            self.__matched_df.to_excel(writer,sheet_name='抽出済')
