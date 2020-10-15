@@ -11,3 +11,5 @@ class PriceRevision():
         self.__makers=self.__master_df['メーカー名称'].unique()
 
     def query_by_maker(self,maker):
+        queried_df=self.__master_df[self.__master_df['メーカー名称']==maker]
+        print(queried_df)
