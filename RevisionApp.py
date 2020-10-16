@@ -11,7 +11,7 @@ layout=[
     [sg.DropDown(makers,default_value='メーカーを選択',key='-MAKERS-',size=(40,10))],
     [sg.Text('作業先フォルダを選択してください．'),sg.FolderBrowse(key='-WORK_DIR-')],
     [sg.Button('作業用エクセルファイルを作成')],
-    [sg.Button('実行')]
+    [sg.Button('実行',key='-EXECUTE-')],
 ]
 
 window = sg.Window('価格改定抽出アプリ',layout,size=(600,400))
@@ -31,12 +31,12 @@ while True:
         dir_path=values['-WORK_DIR-']
         pr.create_revision_excel(dir_path=dir_path)
 
-    if event=='実行':
+    if event=='-EXECUTE-':
         selected_maker=values['-MAKERS-']
         pr.query_by_maker(maker=selected_maker)
         pr.create_revision_data_frame(dir_path=dir_path)
         pr.execute_search()
         pr.export_matched_data(dir_path=dir_path)
-        
+        exit()
 
 window.close()
