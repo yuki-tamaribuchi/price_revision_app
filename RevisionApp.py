@@ -1,5 +1,6 @@
 import PySimpleGUI as sg
 from PriceRevision import PriceRevision
+import time
 
 pr=PriceRevision()
 makers=[]
@@ -26,10 +27,12 @@ while True:
         pr.load_master(filepath)
         pr.create_maker_list()
         window['-MAKERS-'].update(values=pr.makers)
+        print('読込完了')
 
     if event=='作業用エクセルファイルを作成':
         dir_path=values['-WORK_DIR-']
         pr.create_revision_excel(dir_path=dir_path)
+        print('作成完了')
 
     if event=='-EXECUTE-':
         selected_maker=values['-MAKERS-']
@@ -37,6 +40,9 @@ while True:
         pr.create_revision_data_frame(dir_path=dir_path)
         pr.execute_search()
         pr.export_matched_data(dir_path=dir_path)
+        print('抽出完了')
+        print('終了します')
+        time.sleep(2)
         exit()
 
 window.close()
