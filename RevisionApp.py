@@ -2,6 +2,7 @@ import PySimpleGUI as sg
 from PriceRevision import PriceRevision
 import time
 
+print('起動中')
 pr=PriceRevision()
 makers=[]
 
